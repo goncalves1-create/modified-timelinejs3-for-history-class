@@ -1,1 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Your Timeline</title>
+    
+    <!-- Include your modified TimelineJS3 CSS from compiled/css -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/goncalves1-create/modified-timelinejs3-for-history-class@main/compiled/css/timeline.css">
+    
+    <style>
+        #timeline-embed {
+            width: 100%;
+            height: 600px;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="timeline-embed"></div>
 
+    <!-- Include your modified TimelineJS3 JavaScript from compiled/js -->
+    <script src="https://cdn.jsdelivr.net/gh/goncalves1-create/modified-timelinejs3-for-history-class@main/compiled/js/timeline.js"></script>
+    
+    <script>
+        // Your timeline configuration
+        var timelineData = {
+            "title": {
+                "text": {
+                    "headline": "Your Timeline Title",
+                    "text": "Description of your timeline"
+                }
+            },
+            "events": [
+                {
+                    "start_date": {
+                        "year": "2020",
+                        "month": "3"
+                    },
+                    "text": {
+                        "headline": "First Event",
+                        "text": "Description of first event"
+                    }
+                },
+                {
+                    "start_date": {
+                        "year": "2021",
+                        "month": "6"
+                    },
+                    "text": {
+                        "headline": "Second Event",
+                        "text": "Description of second event"
+                    }
+                }
+                // Add more events as needed
+            ]
+        };
+
+        // Initialize the timeline
+        window.timeline = new TL.Timeline('timeline-embed', timelineData);
+    </script>
+</body>
+</html>
