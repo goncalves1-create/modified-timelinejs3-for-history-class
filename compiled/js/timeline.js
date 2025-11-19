@@ -3424,6 +3424,10 @@ TL.TimelineConfig = TL.Class.extend({
             group: item_data.tag || '',
             type: item_data.type || ''
         }
+         // ADD THIS SECTION FOR LEVEL SUPPORT
+    if (item_data.level) {
+        d.level = parseInt(item_data.level);
+        }
         if (item_data.startdate) {
             d['start_date'] = TL.Date.parseDate(item_data.startdate);
         }
@@ -3476,6 +3480,10 @@ TL.TimelineConfig = TL.Class.extend({
             type: item_data.type || ''
         }
 
+        // ADD THIS SECTION FOR LEVEL SUPPORT
+    if (item_data.level) {
+        d.level = parseInt(item_data.level);
+    }
         if (item_data.time) {
             TL.Util.mergeData(d.start_date,TL.DateUtil.parseTime(item_data.time));
         }
@@ -8859,6 +8867,7 @@ TL.Media.TwitterEmbed = TL.Media.extend({
 	
 	
 });
+
 
 
 /* **********************************************
