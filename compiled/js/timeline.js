@@ -11897,7 +11897,16 @@ TL.TimeScale = TL.Class.extend({
         for (var i = 0; i < positions.length; i++) {
             var pos_info = positions[i];
             var overlaps = [];
-
+        // ADD THIS: Check if event has a manual level assigned
+        if (this._markers[i].data.level !== undefined && this._markers[i].data.level !== null) {
+            var manual_level = this._markers[i].data.level;
+            // Make sure the level is within available rows
+            if (manual_level < rows_left) {
+                pos_info.row = manual_level;
+                lasts_in_row[manual_level] = pos_info;
+                continue; // Skip automatic layout for this event
+            }
+        }
             // See if we can add item to an existing row without
             // overlapping the previous item in that row
             delete pos_info.row;
@@ -13399,4 +13408,5 @@ TL.Timeline.source_path = (function() {
 	var src = script_tags[script_tags.length-1].src;
 	return src.substr(0,src.lastIndexOf('/'));
 })();
+
 
