@@ -1,54 +1,40 @@
+html
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <title>My Modified TimelineJS3</title>
-    <link rel="stylesheet" href="compiled/css/timeline.css">
-    <style>
-        #timeline-embed {
-            width: 100%;
-            height: 800px;
-            margin: 20px auto;
-        }
-    </style>
+    <title>My Timeline Test</title>
 </head>
 <body>
-    <h1>My Modified TimelineJS3 Demo</h1>
-    <div id="timeline-embed"></div>
+    <h1>GitHub Pages is Working!</h1>
+    <p>If you can see this, your GitHub Pages is working correctly.</p>
+    <p>Now we can add the timeline.</p>
+    
+    <div id="timeline-embed" style="width: 100%; height: 600px;"></div>
 
-    <script src="compiled/js/timeline.js"></script>
+    <!-- Load TimelineJS from CDN for now -->
+    <link rel="stylesheet" href="https://cdn.knightlab.com/libs/timeline3/latest/css/timeline.css">
+    <script src="https://cdn.knightlab.com/libs/timeline3/latest/js/timeline.js"></script>
+    
     <script>
-        // Simple test data
         var timelineData = {
             "title": {
                 "text": {
-                    "headline": "History Class Timeline",
-                    "text": "Demonstrating modified TimelineJS3"
+                    "headline": "Test Timeline",
+                    "text": "Testing GitHub Pages"
                 }
             },
             "events": [
                 {
-                    "start_date": {
-                        "year": "2020"
-                    },
+                    "start_date": { "year": "2020" },
                     "text": {
-                        "headline": "Test Event 1",
-                        "text": "This is a test event to verify the timeline works"
-                    }
-                },
-                {
-                    "start_date": {
-                        "year": "2021" 
-                    },
-                    "text": {
-                        "headline": "Test Event 2",
-                        "text": "Another test event"
+                        "headline": "Test Event",
+                        "text": "This is a test event"
                     }
                 }
             ]
         };
-
-        // Initialize timeline
+        
         window.timeline = new TL.Timeline('timeline-embed', timelineData);
     </script>
 </body>
