@@ -11909,6 +11909,30 @@ TL.TimeScale = TL.Class.extend({
         }
             // See if we can add item to an existing row without
             // overlapping the previous item in that row
+
+            // ADD THIS: Check if event has a manual level assigned
+        if (this._markers && this._markers[i] && this._markers[i].data && 
+            this._markers[i].data.level !== undefined && this._markers[i].data.level !== null) {
+            var manual_level = parseInt(this._markers[i].data.level);
+            
+            // Make sure the manual level is valid
+            if (!isNaN(manual_level) && manual_level >= 0) {
+                // Ensure we have enough rows for the manual level
+                while (lasts_in_row.length <= manual_level) {
+                    lasts_in_row.push(null);
+                }
+                
+                // If the target row is available (no overlap), use it
+                if (!lasts_in_row[manual_level] || lasts_in_row[manual_level].end <= pos_info.start) {
+                    pos_info.row = manual_level;
+                    lasts_in_row[manual_level] = pos_info;
+                    continue; // Skip automatic layout for this event
+                }
+            }
+            // If manual level is occupied, fall through to automatic layout
+        }
+
+            
             delete pos_info.row;
 
             for (var j = 0; j < lasts_in_row.length; j++) {
@@ -11956,6 +11980,11 @@ TL.TimeScale = TL.Class.extend({
     _computePositionInfo: function(slides, max_rows, default_marker_width) {
         default_marker_width = default_marker_width || 100;
 
+        // Make sure markers reference is available
+    if (!this._markers) {
+        this._markers = []; // Fallback if markers aren't set yet
+    }
+        
         var groups = [];
         var empty_group = false;
 
@@ -13408,5 +13437,6 @@ TL.Timeline.source_path = (function() {
 	var src = script_tags[script_tags.length-1].src;
 	return src.substr(0,src.lastIndexOf('/'));
 })();
+
 
 
